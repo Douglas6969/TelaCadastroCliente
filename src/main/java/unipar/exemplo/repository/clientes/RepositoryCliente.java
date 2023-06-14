@@ -10,18 +10,17 @@ import java.util.List;
 
 
 
-public class repositoryClientes {
+public class RepositoryCliente {
 
     public Integer inserirCliente(Cliente cliente){
 
         try {
-            //conexao
+
             ConnectionGeneric connection = new ConnectionGeneric();
             connection.getConnection();
 
-            //insertBD
             String query = "INSERT INTO clientes (idCliente, nome, cnpj, telefone, email, situacao, cidade, estado, credito)" +
-                    "VALUES ("+cliente.getIdCliente()+", '"+cliente.getNome()+"', '"+cliente.getCnpj()
+                    "VALUES ("+cliente.getIdcliente()+", '"+cliente.getNome()+"', '"+cliente.getCnpj()
                     + "','" +cliente.getTelefone() +"', '"+cliente.getEmail()+"', '"+cliente.getSituacao()+"', '"+cliente.getCidade()+"', '"+cliente.getEstado()+"'" +
                     ", '"+cliente.getCredito()+"' )";
             Integer retorno = connection.statement.executeUpdate(query);
@@ -49,7 +48,7 @@ public class repositoryClientes {
 
             while (result.next()){
 
-                Integer idCliente = result.getInt("idCliente");
+                Integer idcliente = result.getInt("idCliente");
                 String nome = result.getString("nome");
                 String cnpj = result.getString("cnpj");
                 String telefone = result.getString("telefone");
@@ -60,7 +59,7 @@ public class repositoryClientes {
                 Double credito = result.getDouble("credito");
 
                 Cliente clienteBanco = new Cliente();
-                clienteBanco.setIdCliente(idCliente);
+                clienteBanco.setIdcliente(idcliente);
                 clienteBanco.setSituacao(situacao);
                 clienteBanco.setNome(nome);
                 clienteBanco.setCnpj(cnpj);
@@ -76,7 +75,7 @@ public class repositoryClientes {
 
 
                /*System.out.println("--------------------------");
-                System.out.println("Cadastro cliente");
+                System.out.println("Cadastro RepositoryCliente");
                 System.out.println("IdCliente : " + idCliente);
                 System.out.println("Nome : " + nome);
                 System.out.println("CNPJ : " + cnpj);
